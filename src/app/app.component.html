@@ -1,3 +1,5 @@
+
+<!--
 <button mat-button color="primary">Primary</button>
 <button mat-stroked-button color="accent">Accent</button>
 <button mat-icon-button> <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon><br>
@@ -7,7 +9,7 @@
 
  
 </button>
-
+-->
 <mat-horizontal-stepper #stepper>
   <mat-step [stepControl]="firstFormGroup">
      
@@ -16,40 +18,38 @@
          <ng-template matStepLabel>Fill out your name</ng-template>
          
         <mat-form-field>
-         <input matInput placeholder="Last name, First name" formControlName="firstCtrl" name="name" required>
+         <input matInput placeholder="Last name, First name" formControlName="nombre" name="name" required>
          
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="iban" formControlName="firstCtrl" name= "iban" required><br>
+          <input matInput placeholder="iban" formControlName="iban" name= "iban" required><br>
           
          </mat-form-field>
          <br>
          <mat-form-field>
-          <input matInput placeholder="DNI" formControlName="firstCtrl" name= "DNI" required><br>
+          <input matInput placeholder="DNI" formControlName="DNI" name= "DNI" required><br>
           
          </mat-form-field>
          <br>
 
          <mat-form-field>
-          <input matInput [matDatepicker]="myDatepicker" placeholder="Fecha de entrada en vigor">
+          <input matInput [matDatepicker]="myDatepicker" formControlName= "fechaVigor" placeholder="Fecha de entrada en vigor">
           <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
           <mat-datepicker #myDatepicker></mat-datepicker>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="Valor del continente" formControlName="firstCtrl" required><br>
+          <input matInput placeholder="Valor del continente" formControlName="valorContinente" required><br>
           
          </mat-form-field>
        
  
   <div>
-    <button mat-button color="primary">Primary</button>
-          <button mat-stroked-button color="accent">Accent</button>
           <br>
           <br>
           <h4>Localización de la vivienda: </h4>
-          <mat-button-toggle-group name="localizacion" aria-label="Font Style">
+          <mat-button-toggle-group name="localizacion" formControlName="localizacionVivienda" aria-label="Font Style">
             <mat-button-toggle value="urbano">CascoUrbano</mat-button-toggle>
             <mat-button-toggle value="afueras">Afueras</mat-button-toggle>
             <mat-button-toggle value="lonely">Loney</mat-button-toggle>
@@ -57,7 +57,7 @@
           <br>
           <br>
           <h4>Selecciona el numero de hijos: </h4>
-          <mat-button-toggle-group name="Numero de hijos" aria-label="Font Style">
+          <mat-button-toggle-group name="Numero de hijos" formControlName="numeroHijos" aria-label="Font Style">
             <mat-button-toggle value="uno">1</mat-button-toggle>
             <mat-button-toggle value="dos">2</mat-button-toggle>
             <mat-button-toggle value="tres">3</mat-button-toggle>
@@ -68,7 +68,7 @@
           <br>
           <br><br>
           <h4>Cuantas personas residen en el domicilio? </h4>
-          <mat-button-toggle-group name="Numero de hijos" aria-label="Font Style">
+          <mat-button-toggle-group name="Cuantas personas viven en la vivienda?" formControlName="integrantesVivienda" aria-label="Font Style">
             <mat-button-toggle value="uno">1</mat-button-toggle>
             <mat-button-toggle value="dos">2</mat-button-toggle>
             <mat-button-toggle value="tres">3</mat-button-toggle>
@@ -79,13 +79,13 @@
           
           <br>
           <mat-form-field>
-            <input matInput placeholder="Codigo Postal" formControlName="firstCtrl" name= "codigoPostal" required><br>
+            <input matInput placeholder="Codigo Postal" formControlName="codigoPostal" required><br>
             
            </mat-form-field>
            
            <br>
            <mat-form-field>
-            <input matInput placeholder="Ciudad" formControlName="firstCtrl" name= "ciudad" required><br>
+            <input matInput placeholder="Ciudad" formControlName="ciudad" required><br>
             
            </mat-form-field>
            <br>
@@ -102,13 +102,13 @@
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Fill out your address</ng-template>
         <mat-form-field>
-          <input matInput placeholder="Address">
+          <input matInput placeholder="Direccion" formControlName="direccion" required><br>
         </mat-form-field>
         <br>
         
 
       <mat-form-field>
-        <mat-select [(value)]="selected" placeholder="Tipo de vivienda" formControlName="secondCtrl" required>
+        <mat-select [(value)]="selected" placeholder="Tipo de vivienda" formControlName="tipoVivienda" required>
             <mat-option>None</mat-option>
             <mat-option value="option1">Piso Alto</mat-option>
             <mat-option value="option2">Piso Bajo</mat-option>
@@ -118,7 +118,7 @@
       </mat-form-field>
       <br>
       <mat-form-field>
-        <mat-select [(value)]="selected" placeholder="Tipo de Construccion" formControlName="secondCtrl" required>
+        <mat-select [(value)]="selected" placeholder="Tipo de Construccion" formControlName="tipoConstruccion" required>
             <mat-option>None</mat-option>
             <mat-option value="option1">Piso Alto</mat-option>
             <mat-option value="option2">Piso Bajo</mat-option>
@@ -128,23 +128,26 @@
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput placeholder="Año de construccion" formControlName="secondCtrl" name= "anoConstruccion" required><br>
+        <input matInput placeholder="Año de construccion" formControlName="anoConstruccion" required><br>
        </mat-form-field>
        <br>
-       <mat-form-field>
-        <input matInput placeholder="Superficie construida" formControlName="secondCtrl" name= "superficieConstruida" required><br>
+      <mat-form-field>
+        <input matInput placeholder="Superficie construida" formControlName="superficieConstruida" required><br>
        </mat-form-field>
 
        
       
        
  
-        <div>
+        <!--<div>
           <mat-checkbox [(ngModel)]="opcion1">Sumar</mat-checkbox>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
         </div>
-    </form>
+      -->
+      <br><br>
+      <button mat-button matStepperNext [disabled]="secondFormGroup.invalid">Next</button>
+  </form>
  
  
 </mat-step>
